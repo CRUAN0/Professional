@@ -1,0 +1,130 @@
+/* =========================================
+   STYLE 1: The Pink & Purple Background Theme
+   ========================================= */
+body {
+    /* A bold, undeniable pink-to-purple background */
+    background-color: #ffb6c1; /* Fallback pink */
+    background-image: linear-gradient(135deg, #ffb6c1 0%, #800080 100%);
+    background-attachment: fixed; /* Keeps the gradient still while scrolling */
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =========================================
+   STYLE 2: Pure CSS Moving Glitter
+   ========================================= */
+.glitter-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; /* Allows clicking through the background */
+    z-index: 1; /* Sits just above the body background */
+    
+    /* Creating sparkles using pure CSS dots instead of an image file */
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+        radial-gradient(2px 2px at 40px 70px, #ffc0cb, transparent),
+        radial-gradient(3px 3px at 80px 120px, #ffffff, transparent),
+        radial-gradient(2px 2px at 110px 40px, #ffffff, transparent),
+        radial-gradient(2px 2px at 160px 80px, #ff69b4, transparent),
+        radial-gradient(3px 3px at 190px 180px, #ffffff, transparent),
+        radial-gradient(2px 2px at 40px 190px, #ffffff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.8;
+    
+    /* The slow, continuous drifting animation */
+    animation: glitterDrift 15s linear infinite;
+}
+
+@keyframes glitterDrift {
+    0% { background-position: 0px 0px; }
+    100% { background-position: 200px 200px; }
+}
+
+/* =========================================
+   STYLE 3: Centered Site Wrapper
+   ========================================= */
+.site-wrapper {
+    position: relative;
+    z-index: 10; /* Keeps all your content safely above the glitter */
+    max-width: 900px;
+    margin: 40px auto; /* Centers the website horizontally */
+    padding: 0 20px;
+}
+
+/* =========================================
+   STYLE 4: Typography & Font Colors
+   ========================================= */
+h1, h2, h3 {
+    color: #4a004a; /* Very Deep Purple for high contrast */
+    text-align: center;
+}
+
+p, li {
+    color: #333333;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+/* Stylish Links */
+a {
+    color: #ff1493; /* Deep Pink */
+    text-decoration: none;
+    font-weight: bold;
+}
+a:hover {
+    text-decoration: underline;
+    color: #800080;
+}
+
+/* =========================================
+   DIV POSITIONING: Header Container
+   ========================================= */
+#header-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px 15px 0 0;
+    border-bottom: 5px solid #ff69b4; /* Hot pink separator */
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+#header-container ul {
+    list-style-type: center;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   DIV POSITIONING: Main Content
+   ========================================= */
+#main-content {
+    background-color: rgba(255, 255, 255, 0.95); /* Mostly solid white for readability */
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   DIV POSITIONING: Data Section
+   ========================================= */
+#data-section {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 0 0 15px 15px;
+    border-top: 3px dashed #ff1493; /* Pink dashed line */
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Make images and video responsive and centered */
+img, iframe {
+    display: block;
+    margin: 30px auto;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}

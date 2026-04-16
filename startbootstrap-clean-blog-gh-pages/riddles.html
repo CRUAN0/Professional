@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twilight Riddle Simulator</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #050a10; 
+            background-image: linear-gradient(160deg, #0b1a2e 0%, #1a1025 100%);
+            font-family: 'Georgia', serif;
+            color: #d3dce6;
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(15, 12, 20, 0.85);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+            max-width: 650px;
+            width: 100%;
+            border: 1px solid #2a3b52;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #9db2c9;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        #riddle-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-style: italic;
+        }
+
+        #source-text {
+            font-size: 0.9rem;
+            color: #8b6b9e;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .apple-btn {
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
+            color: white;
+            width: 130px;
+            height: 120px;
+            border: none;
+            border-radius: 50% 50% 50% 50% / 45% 45% 60% 60%; 
+            position: relative;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.4), 0 10px 20px rgba(0,0,0,0.6);
+            transition: transform 0.2s ease, filter 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .apple-btn::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 55%;
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(135deg, #4caf50, #1b5e20);
+            border-radius: 0 50% 0 50%;
+            transform: rotate(-15deg);
+            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.3);
+        }
+
+        .apple-btn::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 45%;
+            width: 6px;
+            height: 18px;
+            background: #5c4033;
+            border-radius: 3px;
+            transform: rotate(15deg);
+        }
+
+        .apple-btn:hover:not(:disabled) {
+            transform: scale(1.08) translateY(-5px);
+        }
+
+        .apple-btn:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        .apple-btn:disabled {
+            filter: grayscale(80%) brightness(0.7);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        #answer-text {
+            margin-top: 1rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #0b1a2e;
+            background: linear-gradient(90deg, #9db2c9, #ffffff);
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    </button>
+
+
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+
+            <ul class="navbar-nav ms-auto py-4 py-lg-0">
+
+
+
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a>
+
+
+
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">Projects</a>
+
+
+
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="fromscratch.html">Twilight Facts</a>
+
+
+
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="riddles.html">Twilight Trivia</a>
+
+
+
+            </ul>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Twilight Trivia</h1>
+        <div id="riddle-text">Ready to test your knowledge? Pluck an apple to begin.</div>
+        <div id="source-text"></div>
+        
+        <div class="button-group">
+            <button class="apple-btn" id="generate-btn" onclick="generateRiddle()">Get<br>Trivia</button>
+            <button class="apple-btn" id="reveal-btn" onclick="revealAnswer()" disabled>Reveal<br>Answer</button>
+        </div>
+
+        <div id="answer-text"></div>
+    </div>
+
+    <script>
+        const riddles = [
+            {
+                question: "I am the city where it always rains, where a lion fell in love with a lamb. What am I?",
+                answer: "Forks, Washington.",
+                source: "Setting of the Twilight Saga"
+            },
+            {
+                question: "I am the oldest of my adoptive family, born in 1640 in London. I have a calming, compassionate influence and a strong resistance to human blood. Who am I?",
+                answer: "Carlisle Cullen.",
+                source: "Twilight / New Moon Lore"
+            },
+            {
+                question: "I am a shape-shifter from the Quileute tribe who imprinted on the daughter of the girl I once loved. Who am I?",
+                answer: "Jacob Black.",
+                source: "Breaking Dawn"
+            },
+            {
+                question: "We are the closest thing to royalty in the vampire world, enforcing the laws from our ancient city in Italy. Who are we?",
+                answer: "The Volturi.",
+                source: "New Moon / Breaking Dawn"
+            },
+            {
+                question: "I was a major in the Confederate Army before I was turned. Now, my special ability is feeling and manipulating the emotions of those around me. Who am I?",
+                answer: "Jasper Hale.",
+                source: "Eclipse"
+            },
+            {
+                question: "I can see the future, though my visions are subjective and change based on the decisions people make. Who am I?",
+                answer: "Alice Cullen.",
+                source: "The Twilight Saga"
+            },
+            {
+                question: "I am a rare half-human, half-vampire hybrid whose unique existence nearly started a war. Who am I?",
+                answer: "Renesmee Cullen.",
+                source: "Breaking Dawn"
+            }
+        ];
+
+        let currentRiddleIndex = -1;
+
+        function generateRiddle() {
+            let randomIndex;
+            
+            do {
+                randomIndex = Math.floor(Math.random() * riddles.length);
+            } while (randomIndex === currentRiddleIndex && riddles.length > 1);
+            
+            currentRiddleIndex = randomIndex;
+            const selectedRiddle = riddles[currentRiddleIndex];
+
+            document.getElementById("riddle-text").innerHTML = '"' + selectedRiddle.question + '"';
+            document.getElementById("source-text").innerText = "Source: " + selectedRiddle.source;
+            
+            const answerBox = document.getElementById("answer-text");
+            answerBox.style.display = "none";
+            answerBox.innerText = selectedRiddle.answer;
+            
+            document.getElementById("reveal-btn").disabled = false;
+        }
+
+        function revealAnswer() {
+            document.getElementById("answer-text").style.display = "block";
+            document.getElementById("reveal-btn").disabled = true;
+
+            if (typeof confetti === "function") {
+                confetti({
+                    particleCount: 150,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#b30000', '#ff4d4d', '#000000', '#ffffff', '#9db2c9'],
+                    disableForReducedMotion: true
+                });
+            }
+        }
+    </script>
+
+</body>
+</html> 

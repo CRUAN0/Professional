@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+/* =========================================
+   STYLE 1: The Moody Forks Forest Background
+   ========================================= */
+body {
+    /* Deep blue to dark purple to black gradient */
+    background-color: #050a10; 
+    background-image: linear-gradient(160deg, #0b1a2e 0%, #1a1025 40%, #2b1d14 80%, #000000 100%);
+    background-attachment: fixed; 
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif; /* A classic, slightly gothic font choice */
+}
+
+/* =========================================
+   STYLE 2: Pure CSS Rain Effect
+   ========================================= */
+.rain-overlay {
+    position: fixed;
+    top: -100%; left: 0; width: 100%; height: 200%;
+    pointer-events: none; 
+    z-index: 1; 
+    
+    /* Creates diagonal rain drops using repeating gradients */
+    background-image: repeating-linear-gradient(
+        105deg, 
+        transparent, 
+        transparent 20px, 
+        rgba(130, 160, 190, 0.15) 20px, 
+        rgba(130, 160, 190, 0.15) 21px
+    );
+    
+    /* Continuous falling animation */
+    animation: rainDrop 8s linear infinite;
+}
+
+@keyframes rainDrop {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50%); }
+}
+
+/* =========================================
+   STYLE 3: Centered Site Wrapper
+   ========================================= */
+.site-wrapper {
+    position: relative;
+    z-index: 10; 
+    max-width: 900px;
+    margin: 40px auto; 
+    padding: 0 20px;
+}
+
+/* =========================================
+   STYLE 4: Typography & Font Colors
+   ========================================= */
+h1, h2, h3 {
+    color: #9db2c9; /* A pale, misty Twilight blue */
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+p, li {
+    color: #d3dce6; /* Pale grey-blue for readability */
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+/* Stylish Links */
+a {
+    color: #8b6b9e; /* Muted Purple */
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+a:hover {
+    color: #9db2c9; /* Light blue on hover */
+    border-bottom: 1px solid #9db2c9;
+}
+
+/* =========================================
+   DIV POSITIONING: Header Container
+   ========================================= */
+#header-container {
+    background-color: rgba(10, 15, 25, 0.85); /* Dark translucent blue/black */
+    padding: 30px;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 4px solid #3b2818; /* Dark tree-bark brown separator */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+#header-container ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   DIV POSITIONING: Main Content
+   ========================================= */
+#main-content {
+    background-color: rgba(15, 12, 20, 0.85); /* Dark translucent purple/black */
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+/* =========================================
+   DIV POSITIONING: Data Section
+   ========================================= */
+#data-section {
+    background-color: rgba(20, 15, 15, 0.85); /* Dark translucent brown/black */
+    padding: 40px;
+    border-radius: 0 0 10px 10px;
+    border-top: 2px dashed #4a3b52; /* Muted purple dashed line */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+/* Make images and video responsive and centered */
+img, iframe {
+    display: block;
+    margin: 30px auto;
+    max-width: 100%;
+    border-radius: 6px;
+    border: 2px solid #2a3b52; /* Dark blue border */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.9);
+}
+
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Scratch Page - Twilight</title>
+    <link rel="stylesheet" href="custom-style.css"> 
+</head>
+<body>
+
+    <div class="rain-overlay"></div>
+
+    <div class="site-wrapper">
+
+        <div id="header-container">
+            <h1>The Magic of The Twilight Saga</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Back to Professional Portfolio</a></li>
+                    <li><a href="riddles.html">Twilight Trivia</a></li>
+                    <li><a href="#data-section">Jump down to the Data</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="main-content">
+            <h2>Why I Love This Topic</h2>
+            <p>The Twilight Saga is a cultural phenomenon that blends supernatural romance, Pacific Northwest atmosphere, and iconic, unintentionally hilarious cinematic moments.</p>
+            <p>This movie is so bad and poor quality that it became one of the most iconic movie series of all time.</p>
+
+            <ol>
+                <li>The most iconic elements of the franchise:
+                    <ul>
+                        <li>The blue cinematic filter of the first movie</li>
+                        <li>Toxic men fighting over a toxic woman</li>
+                        <li>The unforgettable soundtrack: Featuring Paramore, Linkin Park, and Muse as a few.</li>
+                    </ul>
+                </li>
+                <li>The legendary awkward dialogue: "You are asking me about the weather?"</li>
+                    
+                <li>How the fandom has evolved over the years</li>
+            </ol>
+<img src="assets/img/TWILIGHT.jpg" alt="TWILIGHT FEUD">
+            
+
+            <h3>See it in action:</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/GG1LSHDbQA0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div id="data-section">
+            <h2>Interactive Data Visualization</h2>
+            <p>Here is some data from their revenue across the books and movies:</p>
+            
+            [<div class='tableauPlaceholder' id='viz1776320320009' style='position: relative'><noscript><a href='#'><img alt='TWILIGHT REVENUE ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;TW&#47;TWILIGHTDATA&#47;Sheet2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='TWILIGHTDATA&#47;Sheet2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;TW&#47;TWILIGHTDATA&#47;Sheet2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1776320320009');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>E]
+        </div>
+
+    </div>
+
+</body>
+</html>
